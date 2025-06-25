@@ -50,8 +50,8 @@
 }
 
 body.dark-mode {
-  --app-bg: #5e0808;
-  --header-bg: #ef444440;
+  --app-bg: hsl(0, 84%, 10%);
+  --header-bg: #ef434340;
   --app-bg-img: url('res/images/background_dark.png');
   --display-color: #eee;
 }
@@ -75,7 +75,6 @@ body.dark-mode {
     border-image: url(res/images/gui/header_separator.png) 0 0 2 0 fill / 0px 0px 4px 0px stretch;
     display: flex;
     align-items: center;
-    overflow: hidden;
 }
 
 .hide {
@@ -91,7 +90,7 @@ body.dark-mode {
     font-size: 16px;
     padding: 8px;
     color: white;
-    text-shadow: 2px 2px #00000047;
+    text-shadow: 2px 2px #00000040;
 }
 .game-button:hover {
     border-image: url(res/images/gui/widget/button_highlighted.png) 2 2 3 2 fill / 5px 5px 7.5px 5px stretch;
@@ -139,15 +138,24 @@ body.dark-mode {
 }
 
 .dropdown-container {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 4px;
 }
 
 .dropdown-menu {
-    background-color: var(--dropdown-menu-bgc, #fff);
     position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: var(--app-bg);
+    border: 2px solid var(--display-color);
+    border-radius: 4px;
     z-index: 1;
+}
+.dropdown-menu li {
+    margin-right: 0px;
+    padding: 0px 20px 0px 4px;
 }
 .dropdown-menu a {
     display: block;

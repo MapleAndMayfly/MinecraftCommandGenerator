@@ -1,10 +1,13 @@
 fetch('src/templates.html')
     .then(response => response.text())
     .then(html => {
+        document.baseURI = '';
+
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
         const headerBar = doc.querySelector('#MCG-header').content.cloneNode(true);
         document.getElementById('header').appendChild(headerBar);
+
         init();
     })
     .catch(error => console.error('Header loading failed') );
