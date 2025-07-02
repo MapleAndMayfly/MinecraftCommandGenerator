@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MCG Header</title>
+</head>
+<body>
+  <template id="MCG-header">
+    <div class="header-bar">
+      <div class="entry left-entry">
+        <ul>
+          <li>
+            <a id="title-link" href="/" target="_self" >
+              <img id="title-image" src="" style="display: block" alt="Minecraft Command Generator">
+            </a>
+            <script>
+              let isDev = !window.location.origin.includes('https://mapleandmayfly.github.io');
+              console.log('Dev mode: ' + isDev);
+              let base = '/';
+              if (!isDev) base = 'https://mapleandmayfly.github.io/MinecraftCommandGenerator/';
+              document.getElementById('title-image').src = base + 'assets/images/title.png';
+              document.getElementById('title-link').href = base + 'index.html';
+            </script>
+          </li>
+        </ul>
+      </div>
+      <div class="entry right-entry">
+        <ul>
+          <li>
+            <div class="dropdown-container">
+              <span>Language:</span>
+              <div>
+                <button class="dropdown-button">
+                  <span>English</span>
+                  <svg class="little-down-arrow" width="10" viewBox="0 0 26.63 15.31" xmlns="http://www.w3.org/2000/svg">
+                    <defs><style>.short-line { fill: none; stroke: currentColor; stroke-linecap: round; stroke-miterlimit: 10; stroke-width: 4px; }</style></defs>
+                    <line class="short-line" x1="13.31" y1="13.31" x2="24.63" y2="2"/><line class="short-line" x1="13.31" y1="13.31" x2="2" y2="2"/>
+                  </svg>
+                </button>
+                <ul class="dropdown-menu hide">
+                  <li><a class="lang-option" href="#" data-value="zh">Chinese</a></li>
+                  <li><a class="lang-option" href="#" data-value="en">English</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="dropdown-container">
+              <span>Edition:</span>
+              <div>
+                <button class="dropdown-button">
+                  <span>Java</span>
+                  <svg class="little-down-arrow" width="10" viewBox="0 0 26.63 15.31" xmlns="http://www.w3.org/2000/svg">
+                    <defs><style>.short-line { fill: none; stroke: currentColor; stroke-linecap: round; stroke-miterlimit: 10; stroke-width: 4px; }</style></defs>
+                    <line class="short-line" x1="13.31" y1="13.31" x2="24.63" y2="2"/><line class="short-line" x1="13.31" y1="13.31" x2="2" y2="2"/>
+                  </svg>
+                </button>
+                <ul class="dropdown-menu hide">
+                  <li><a class="edition-option" href="#" data-value="Java">Java</a></li>
+                  <li><a class="edition-option" href="#" data-value="Bedrock">Bedrock</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="dropdown-container">
+              <span>Version:</span>
+              <div>
+                <button class="dropdown-button">
+                  <span>1.16.5</span>
+                    <svg class="little-down-arrow" width="10" viewBox="0 0 26.63 15.31" xmlns="http://www.w3.org/2000/svg">
+                      <defs><style>.short-line { fill: none; stroke: currentColor; stroke-linecap: round; stroke-miterlimit: 10; stroke-width: 4px; }</style></defs>
+                      <line class="short-line" x1="13.31" y1="13.31" x2="24.63" y2="2"/><line class="short-line" x1="13.31" y1="13.31" x2="2" y2="2"/>
+                    </svg>
+                </button>
+                <ul class="dropdown-menu hide">
+                  <li><a class="version-option" data-value="1.16.5">1.16.5</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li style="margin-right: 4px;">
+            <button class="display-mode-button">
+              <svg class="light-mode" width="24" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+                <defs><style>.ray { fill: none; stroke: currentColor; stroke-linecap: round; stroke-miterlimit: 10; stroke-width: 2px; }</style></defs>
+                <path d="M14,8c3.31,0,6,2.69,6,6s-2.69,6-6,6-6-2.69-6-6,2.69-6,6-6m0-2c-4.42,0-8,3.58-8,8s3.58,8,8,8,8-3.58,8-8-3.58-8-8-8h0Z" fill="currentColor"/>
+                <line class="ray" x1="14" y1="4" x2="14" y2="1"/><line class="ray" x1="1" y1="14" x2="4" y2="14"/><line class="ray" x1="21.35" y1="6.46" x2="23.47" y2="4.34"/><line class="ray" x1="6.47" y1="6.46" x2="4.35" y2="4.34"/><line class="ray" x1="14" y1="27" x2="14" y2="24"/><line class="ray" x1="24" y1="14" x2="27" y2="14"/><line class="ray" x1="4.35" y1="23.46" x2="6.47" y2="21.34"/><line class="ray" x1="23.47" y1="23.46" x2="21.35" y2="21.34"/>
+              </svg>
+              <svg class="dark-mode hide" width="24" viewBox="0 0 23.61 24" xmlns="http://www.w3.org/2000/svg">
+                <defs><style>.short-curve { fill: none; stroke: currentColor; stroke-linecap: round; stroke-miterlimit: 10; stroke-width: 2px; }</style></defs>
+                <path class="short-curve" d="M7.58,1.76c1.25-.49,2.61-.76,4.03-.76,6.08,0,11,4.92,11,11s-4.92,11-11,11c-5.07,0-9.33-3.42-10.61-8.08"/>
+                <path class="short-curve" d="M7.58,1.76c3.19,.87,5.53,3.78,5.53,7.24,0,4.14-3.36,7.5-7.5,7.5-1.74,0-3.34-.59-4.61-1.58"/>
+              </svg>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </template>
+</body>
+</html>

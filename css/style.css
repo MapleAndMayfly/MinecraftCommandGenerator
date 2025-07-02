@@ -55,6 +55,10 @@
   --app-bg-img: url('../assets/images/background_light.png');
   --display-color: #222;
 }
+:hover
+{
+    cursor: url(../assets/images/gui/cursor_set/normal.png), auto;
+}
 
 body.dark-mode
 {
@@ -72,10 +76,6 @@ body.dark-mode
   background-image: var(--app-bg-img);
   background-size: cover;
   background-repeat: no-repeat;
-}
-#app:hover
-{
-    cursor: url(../assets/images/gui/cursor_set/normal.png), auto;
 }
 
 #header
@@ -95,15 +95,23 @@ body.dark-mode
 
 .game-button
 {
+    display: flex;
+    gap: 8px;
     height: 50px;
     min-width: 50px;
     align-items: center;
     justify-content: center;
     border-image: url(../assets/images/gui/widget/button.png) 2 2 3 2 fill / 5px 5px 7.5px 5px stretch;
-    font-size: 16px;
     padding: 8px;
+}
+.game-button> span
+{
     color: white;
     text-shadow: 2px 2px #00000040;
+}
+.game-button> img
+{
+    height: 32;
 }
 .game-button:hover
 {
@@ -112,10 +120,18 @@ body.dark-mode
 .game-button:active
 {
     border-image: url(../assets/images/gui/widget/button_pressed.png) 2 2 3 2 fill / 5px 5px 7.5px 5px stretch;
+    padding-left: 9px;
+    padding-top: 9px;
+    padding-right: 7px;
+    padding-bottom: 7px;
 }
 .game-button:disabled
 {
     border-image: url(../assets/images/gui/widget/button_disabled.png) 2 2 3 2 fill / 5px 5px 7.5px 5px stretch;
+    padding-left: 8px;
+    padding-top: 8px;
+    padding-right: 7px;
+    padding-bottom: 7px;
 }
 
 .header-bar
@@ -129,14 +145,26 @@ body.dark-mode
     margin-right: 16px;
 }
 
+.entry
+{
+    display: flex;
+    gap: 16px;
+}
 .entry> ul
 {
     display: flex;
     list-style: none;
     align-items: center;
     justify-content: center;
-    list-style: none;
+    gap: 16px;
 }
+.entry li
+{
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+
 .left-entry img
 {
     display: block;
@@ -146,13 +174,6 @@ body.dark-mode
     object-fit: contain;
 }
 
-.right-entry li
-{
-    display: flex;
-    align-items: center;
-    margin-right: 16px;
-    font-size: 16px;
-}
 .right-entry button
 {
     align-items: center;
