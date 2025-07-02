@@ -1,4 +1,4 @@
-fetch('/pages/header.html')
+fetch('../pages/header.html')
     .then(response => response.text())
     .then(html => {
         const parser = new DOMParser();
@@ -38,6 +38,7 @@ function initDropdownMenus()
 
 function initThemeSwitcher()
 {
+    // Processing logic for theme switching button
     document.querySelector(".display-mode-button").addEventListener('click', function()
     {
         document.body.classList.toggle('dark-mode');

@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MCG Header</title>
-  
 </head>
 <body>
   <template id="MCG-header">
@@ -12,9 +11,17 @@
       <div class="entry left-entry">
         <ul>
           <li>
-            <a href="/" target="_self" >
-              <img src="/assets/images/title.png" style="display: block" alt="Minecraft Command Generator">
+            <a id="title-link" href="/" target="_self" >
+              <img id="title-image" src="" style="display: block" alt="Minecraft Command Generator">
             </a>
+            <script>
+              let isDev = !window.location.origin.includes('https://mapleandmayfly.github.io');
+              console.log('Dev mode: ' + isDev);
+              let base = '/';
+              if (!isDev) base = 'https://mapleandmayfly.github.io/MinecraftCommandGenerator/';
+              document.getElementById('title-image').src = base + 'assets/images/title.png';
+              document.getElementById('title-link').href = base + 'index.html';
+            </script>
           </li>
         </ul>
       </div>
