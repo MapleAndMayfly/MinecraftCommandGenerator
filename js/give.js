@@ -49,6 +49,6 @@ function changeIcon(button, src = 'item/empty_slot_sword.png')
     }
     else
     {
-        console.error('Icon for item button [' + button.dataset.name + '] not found!');
+        console.error('Icon for item button [' + button.dataset.id + '] not found!');
     }
 }

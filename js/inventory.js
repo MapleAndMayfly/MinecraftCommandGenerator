@@ -1,4 +1,4 @@
-import { setTooltip, hideTooltip, moveTooltip } from "./global.js";
+import { setTooltip, hideTooltip, moveTooltip, base } from "./global.js";
 
 const invTabList =
 {
@@ -15,10 +15,10 @@ const invTabList =
 
 const tabButtons = document.querySelectorAll('.tab-button');
 
-tabButtons.forEach(function(btn)
+tabButtons.forEach(function(button)
 {
     // Listener for tab buttons
-    btn.addEventListener('mousedown', function()
+    button.addEventListener('mousedown', function()
     {
         tabButtons.forEach(function(btn)
         {
@@ -37,15 +37,43 @@ tabButtons.forEach(function(btn)
             document.querySelector('.tab-items > div').classList.remove('with-search');
         }
     });
-    // Init Tooltip
-    btn.addEventListener('mouseenter', function()
+
+    // Init button icon
+    let icon = button.querySelector('img');
+    if (icon)
+    {
+        let src = button.dataset.icon;
+        if (src.startsWith('item'))
+        {
+            icon.classList.add('pixel');
+        }
+        else if (src.startsWith('block'))
+        {
+            icon.classList.remove('pixel');
+        }
+        else
+        {
+            icon.classList.add('pixel');
+            console.error('Bad image URL: ' + src);
+            src = 'item/empty_slot_sword.png';
+        }
+
+        icon.src = base + 'assets/images/' + src;
+    }
+    else
+    {
+        console.error('Icon for item button [' + button.dataset.id + '] not found!');
+    }
+
+    // Init tooltip
+    button.addEventListener('mouseenter', function()
     {
         let currLang = localStorage.getItem('lang') || 'zh';
-        let idx = btn.getAttribute('data-id')
+        let idx = this.dataset.id;
         setTooltip(invTabList[currLang][idx] || 'Error: Id [' + idx + '] not defined in invTabList!');
     });
-    btn.addEventListener('mousemove', e => moveTooltip(e));
-    btn.addEventListener('mouseleave', () => hideTooltip());
+    button.addEventListener('mousemove', e => moveTooltip(e));
+    button.addEventListener('mouseleave', () => hideTooltip());
 });
 
 if(tabButtons.length > 0)
