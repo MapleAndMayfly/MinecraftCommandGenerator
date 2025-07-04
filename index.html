@@ -1,31 +1,54 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html>
 <head>
   <meta charset="UTF-8">
   <link rel="icon" href="favicon.png" type="image/x-icon">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>主页 - MC指令生成器</title>
+  <title data-i18n="page.main">主页 - MC指令生成器</title>
   <link rel="stylesheet" href="css/index.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/global.css">
   <script src="js/index.js" type="module"></script>
 </head>
 <body>
   <div id="app">
+    <div id="tooltip" class="hide"></div>
     <div id="header"></div>
     <div id="content">
-      <ul>
+      <ul class="list" style="list-style: none;">
         <li>
-          <span>置顶</span>
+          <h1 data-i18n="index.top">置顶</h1>
           <ul class="entry">
             <li>
-              <button class="game-button" id="btn-give">
-                <img src="assets/images/gui/button_icon/give.png">
+              <button class="game-button btn-give" data-tooltip="desc.give">
+                <img src="assets/images/gui/button_icon/give.png" class="pixel">
                 <span>give</span>
               </button>
             </li>
             <li>
-              <button class="game-button" id="btn-locate">
-                <img src="assets/images/gui/button_icon/locate.png">
+              <button class="game-button btn-locate" data-tooltip="desc.locate">
+                <img src="assets/images/gui/button_icon/locate.png" class="pixel">
+                <span>locate</span>
+              </button>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <h1>G</h1>
+          <ul class="entry">
+            <li>
+              <button class="game-button btn-give" data-tooltip="desc.give">
+                <img src="assets/images/gui/button_icon/give.png" class="pixel">
+                <span>give</span>
+              </button>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <h1>L</h1>
+          <ul class="entry">
+            <li>
+              <button class="game-button btn-locate" data-tooltip="desc.locate">
+                <img src="assets/images/gui/button_icon/locate.png" class="pixel">
                 <span>locate</span>
               </button>
             </li>

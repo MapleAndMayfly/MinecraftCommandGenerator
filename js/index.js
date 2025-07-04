@@ -1,21 +1,35 @@
-import { init } from "./init.js";
+import { init, base } from "./global.js";
+let selectedLang = localStorage.getItem('lang') || 'zh';
 
-init();
+init(initButtons);
 
-document.addEventListener('DOMContentLoaded', () => {
-  // Listener for give button
-  const btnGive = document.getElementById('btn-give');
-  if (btnGive) {
-    btnGive.addEventListener('click', () => {
-      window.location.href = '../pages/give.html'; // 跳转到give页面
-    });
-  }
+function initButtons()
+{
+    let pagesUrl = base + 'pages/';
 
-  // Listener for locate button
-  const btnLocate = document.getElementById('btn-locate');
-  if (btnLocate) {
-    btnLocate.addEventListener('click', () => {
-      window.location.href = '../pages/locate.html'; // 跳转到locate页面
-    });
-  }
-});
+    // Listener for give button
+    const giveButtons = document.querySelectorAll('.btn-give');
+    if (giveButtons.length > 0)
+    {
+        giveButtons.forEach(function(element)
+        {
+            element.addEventListener('click', function()
+            {
+                window.location.href = pagesUrl + 'give.html';
+            });
+        });
+    }
+
+    // Listener for locate button
+    const locateButtons = document.querySelectorAll('.btn-locate');
+    if (locateButtons.length > 0)
+    {
+        locateButtons.forEach(function(element)
+        {
+            element.addEventListener('click', function()
+            {
+                window.location.href = pagesUrl + 'locate.html';
+            });
+        });
+    }
+}

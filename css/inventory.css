@@ -1,0 +1,168 @@
+.tab-items
+{
+    display: flex;
+    height: 340px;
+    width: 487.5px;
+    margin-top: -10px;
+    margin-bottom: -10px;
+}
+.tab-items > div
+{
+    display: flex;
+    background-image: url(../assets/images/gui/inventory/tab_items.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+.tab-items > div.with-search
+{
+    background-image: url(../assets/images/gui/inventory/tab_item_search.png);
+}
+
+.tab-list
+{
+    display: flex;
+    width: 487.5px;
+    justify-content: space-between;
+}
+.tab-list > ul
+{
+    display: flex;
+    list-style: none;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+.tab-list li.active
+{
+    z-index: 1;
+}
+
+.tab-button
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 80px;
+}
+.tab-button > img
+{
+    width: 40px;
+}
+
+.tab-top-1
+{
+    border-image: url(../assets/images/gui/inventory/tab_top_unselected_1.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+}
+.tab-top-2
+{
+    border-image: url(../assets/images/gui/inventory/tab_top_unselected_2.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+}
+.tab-top-3
+{
+    border-image: url(../assets/images/gui/inventory/tab_top_unselected_3.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+}
+.tab-top-4
+{
+    border-image: url(../assets/images/gui/inventory/tab_top_unselected_4.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+}
+.tab-top-5
+{
+    border-image: url(../assets/images/gui/inventory/tab_top_unselected_5.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+}
+.tab-top-6
+{
+    border-image: url(../assets/images/gui/inventory/tab_top_unselected_6.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+}
+.tab-top-7
+{
+    border-image: url(../assets/images/gui/inventory/tab_top_unselected_7.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+}
+.tab-bottom-1
+{
+    border-image: url(../assets/images/gui/inventory/tab_bottom_unselected_1.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+    z-index: -1;
+}
+.tab-bottom-2
+{
+    border-image: url(../assets/images/gui/inventory/tab_bottom_unselected_2.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+}
+.tab-bottom-3
+{
+    border-image: url(../assets/images/gui/inventory/tab_bottom_unselected_3.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+}
+.tab-bottom-4
+{
+    border-image: url(../assets/images/gui/inventory/tab_bottom_unselected_4.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+}
+.tab-bottom-5
+{
+    border-image: url(../assets/images/gui/inventory/tab_bottom_unselected_5.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+}
+.tab-bottom-6
+{
+    border-image: url(../assets/images/gui/inventory/tab_bottom_unselected_6.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+}
+.tab-bottom-7
+{
+    border-image: url(../assets/images/gui/inventory/tab_bottom_unselected_7.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+}
+.tab-top-1.active
+{
+    border-image: url(../assets/images/gui/inventory/tab_top_selected_1.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+}
+.tab-top-2.active
+{
+    border-image: url(../assets/images/gui/inventory/tab_top_selected_2.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+}
+.tab-top-3.active
+{
+    border-image: url(../assets/images/gui/inventory/tab_top_selected_3.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+}
+.tab-top-4.active
+{
+    border-image: url(../assets/images/gui/inventory/tab_top_selected_4.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+}
+.tab-top-5.active
+{
+    border-image: url(../assets/images/gui/inventory/tab_top_selected_5.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+}
+.tab-top-6.active
+{
+    border-image: url(../assets/images/gui/inventory/tab_top_selected_6.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+}
+.tab-top-7.active
+{
+    border-image: url(../assets/images/gui/inventory/tab_top_selected_7.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+}
+.tab-bottom-1.active
+{
+    border-image: url(../assets/images/gui/inventory/tab_bottom_selected_1.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+}
+.tab-bottom-2.active
+{
+    border-image: url(../assets/images/gui/inventory/tab_bottom_selected_2.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+}
+.tab-bottom-3.active
+{
+    border-image: url(../assets/images/gui/inventory/tab_bottom_selected_3.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+}
+.tab-bottom-4.active
+{
+    border-image: url(../assets/images/gui/inventory/tab_bottom_selected_4.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+}
+.tab-bottom-5.active
+{
+    border-image: url(../assets/images/gui/inventory/tab_bottom_selected_5.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+}
+.tab-bottom-6.active
+{
+    border-image: url(../assets/images/gui/inventory/tab_bottom_selected_6.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+}
+.tab-bottom-7.active
+{
+    border-image: url(../assets/images/gui/inventory/tab_bottom_selected_7.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+}

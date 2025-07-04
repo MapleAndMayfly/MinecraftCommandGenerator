@@ -1,15 +1,11 @@
-.list
+.left-part
 {
-    padding: 32px 24px;
+    margin: 32px 24px;
     width: 100%;
 }
 
-.list > li
+h1 + *
 {
     margin-bottom: 32px;
-}
-
-h1 + ul
-{
     margin-left: 24px;
 }
