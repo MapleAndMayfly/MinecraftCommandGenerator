@@ -1,26 +1,81 @@
-.tab-items
+.tab-body
 {
     display: flex;
     height: 340px;
     width: 487.5px;
-    margin-top: -10px;
-    margin-bottom: -10px;
+    margin: -10px 0px;
 }
-.tab-items > div
+.tab-body > div
 {
-    display: flex;
-    background-image: url(../assets/images/gui/inventory/tab_items.png);
+    background-image: url(../assets/images/gui/inventory/panel.png);
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
+    padding: 10px 18px 16px 20px;
     z-index: 0;
 }
-.tab-items > div.with-search
+
+/* ======================================= Header ======================================= */
+.tab-header
 {
-    background-image: url(../assets/images/gui/inventory/tab_item_search.png);
+    display: flex;
+    height: auto;
+    justify-content: space-between;
 }
 
+.tab-title
+{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    height: 32px;
+}
+
+.tab-search
+{
+    border: none;
+    background: transparent;
+    outline: none;
+    border-image: url(../assets/images/gui/inventory/search.png) 2 fill / 3px stretch;
+    padding: 0 6px;
+    margin-right: 44px;
+    height: 30px;
+    width: 226px;
+}
+
+/* ======================================= Content ======================================= */
+.tab-content
+{
+    display: flex;
+    justify-content: space-between;
+    height: 280px;
+}
+
+.tab-button-set
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.tab-hotbar
+{
+    display: flex;
+}
+
+.tab-row
+{
+    display: flex;
+}
+
+.tab-scroll-bar
+{
+    border-image: url(../assets/images/gui/inventory/scroll_bar.png) 2 fill / 3px stretch;
+    width: 34px;
+}
+
+/* ======================================= List ======================================= */
 .tab-list
 {
     display: flex;
@@ -40,6 +95,7 @@
     z-index: 1;
 }
 
+/* ======================================= Button ======================================= */
 .tab-button
 {
     display: flex;
@@ -53,116 +109,129 @@
     width: 40px;
 }
 
-.tab-top-1
+[data-tooltip="desc.tab.top.1"]
 {
-    border-image: url(../assets/images/gui/inventory/tab_top_unselected_1.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+    border-image: url(../assets/images/gui/inventory/top_unselected_1.png) 8 fill / 10px stretch;
+    padding-top: 4px;
 }
-.tab-top-2
+[data-tooltip="desc.tab.top.2"]
 {
-    border-image: url(../assets/images/gui/inventory/tab_top_unselected_2.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+    border-image: url(../assets/images/gui/inventory/top_unselected_2.png) 8 fill / 10px stretch;
+    padding-top: 4px;
 }
-.tab-top-3
+[data-tooltip="desc.tab.top.3"]
 {
-    border-image: url(../assets/images/gui/inventory/tab_top_unselected_3.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+    border-image: url(../assets/images/gui/inventory/top_unselected_3.png) 8 fill / 10px stretch;
+    padding-top: 4px;
 }
-.tab-top-4
+[data-tooltip="desc.tab.top.4"]
 {
-    border-image: url(../assets/images/gui/inventory/tab_top_unselected_4.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+    border-image: url(../assets/images/gui/inventory/top_unselected_4.png) 8 fill / 10px stretch;
+    padding-top: 4px;
 }
-.tab-top-5
+[data-tooltip="desc.tab.top.5"]
 {
-    border-image: url(../assets/images/gui/inventory/tab_top_unselected_5.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+    border-image: url(../assets/images/gui/inventory/top_unselected_5.png) 8 fill / 10px stretch;
+    padding-top: 4px;
 }
-.tab-top-6
+[data-tooltip="desc.tab.top.6"]
 {
-    border-image: url(../assets/images/gui/inventory/tab_top_unselected_6.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+    border-image: url(../assets/images/gui/inventory/top_unselected_6.png) 8 fill / 10px stretch;
+    padding-top: 4px;
 }
-.tab-top-7
+[data-tooltip="desc.tab.top.7"]
 {
-    border-image: url(../assets/images/gui/inventory/tab_top_unselected_7.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+    border-image: url(../assets/images/gui/inventory/top_unselected_7.png) 8 fill / 10px stretch;
+    padding-top: 4px;
 }
-.tab-bottom-1
+[data-tooltip="desc.tab.bottom.1"]
 {
-    border-image: url(../assets/images/gui/inventory/tab_bottom_unselected_1.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
-    z-index: -1;
+    border-image: url(../assets/images/gui/inventory/bottom_unselected_1.png) 8 fill / 10px stretch;
+    padding-bottom: 4px;
 }
-.tab-bottom-2
+[data-tooltip="desc.tab.bottom.2"]
 {
-    border-image: url(../assets/images/gui/inventory/tab_bottom_unselected_2.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+    border-image: url(../assets/images/gui/inventory/bottom_unselected_2.png) 8 fill / 10px stretch;
+    padding-bottom: 4px;
 }
-.tab-bottom-3
+[data-tooltip="desc.tab.bottom.3"]
 {
-    border-image: url(../assets/images/gui/inventory/tab_bottom_unselected_3.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+    border-image: url(../assets/images/gui/inventory/bottom_unselected_3.png) 8 fill / 10px stretch;
+    padding-bottom: 4px;
 }
-.tab-bottom-4
+[data-tooltip="desc.tab.bottom.4"]
 {
-    border-image: url(../assets/images/gui/inventory/tab_bottom_unselected_4.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+    border-image: url(../assets/images/gui/inventory/bottom_unselected_4.png) 8 fill / 10px stretch;
+    padding-bottom: 4px;
 }
-.tab-bottom-5
+[data-tooltip="desc.tab.bottom.5"]
 {
-    border-image: url(../assets/images/gui/inventory/tab_bottom_unselected_5.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+    border-image: url(../assets/images/gui/inventory/bottom_unselected_5.png) 8 fill / 10px stretch;
+    padding-bottom: 4px;
 }
-.tab-bottom-6
+[data-tooltip="desc.tab.bottom.6"]
 {
-    border-image: url(../assets/images/gui/inventory/tab_bottom_unselected_6.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+    border-image: url(../assets/images/gui/inventory/bottom_unselected_6.png) 8 fill / 10px stretch;
+    padding-bottom: 4px;
 }
-.tab-bottom-7
+[data-tooltip="desc.tab.bottom.7"]
 {
-    border-image: url(../assets/images/gui/inventory/tab_bottom_unselected_7.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+    border-image: url(../assets/images/gui/inventory/bottom_unselected_7.png) 8 fill / 10px stretch;
+    padding-bottom: 4px;
 }
-.tab-top-1.active
+[data-tooltip="desc.tab.top.1"].active
 {
-    border-image: url(../assets/images/gui/inventory/tab_top_selected_1.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+    border-image: url(../assets/images/gui/inventory/top_selected_1.png) 8 fill / 10px stretch;
 }
-.tab-top-2.active
+[data-tooltip="desc.tab.top.2"].active
 {
-    border-image: url(../assets/images/gui/inventory/tab_top_selected_2.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+    border-image: url(../assets/images/gui/inventory/top_selected_2.png) 8 fill / 10px stretch;
 }
-.tab-top-3.active
+[data-tooltip="desc.tab.top.3"].active
 {
-    border-image: url(../assets/images/gui/inventory/tab_top_selected_3.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+    border-image: url(../assets/images/gui/inventory/top_selected_3.png) 8 fill / 10px stretch;
 }
-.tab-top-4.active
+[data-tooltip="desc.tab.top.4"].active
 {
-    border-image: url(../assets/images/gui/inventory/tab_top_selected_4.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+    border-image: url(../assets/images/gui/inventory/top_selected_4.png) 8 fill / 10px stretch;
 }
-.tab-top-5.active
+[data-tooltip="desc.tab.top.5"].active
 {
-    border-image: url(../assets/images/gui/inventory/tab_top_selected_5.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+    border-image: url(../assets/images/gui/inventory/top_selected_5.png) 8 fill / 10px stretch;
 }
-.tab-top-6.active
+[data-tooltip="desc.tab.top.6"].active
 {
-    border-image: url(../assets/images/gui/inventory/tab_top_selected_6.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+    border-image: url(../assets/images/gui/inventory/top_selected_6.png) 8 fill / 10px stretch;
 }
-.tab-top-7.active
+[data-tooltip="desc.tab.top.7"].active
 {
-    border-image: url(../assets/images/gui/inventory/tab_top_selected_7.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+    border-image: url(../assets/images/gui/inventory/top_selected_7.png) 8 fill / 10px stretch;
 }
-.tab-bottom-1.active
+[data-tooltip="desc.tab.bottom.1"].active
 {
-    border-image: url(../assets/images/gui/inventory/tab_bottom_selected_1.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+    border-image: url(../assets/images/gui/inventory/bottom_selected_1.png) 8 fill / 10px stretch;
 }
-.tab-bottom-2.active
+[data-tooltip="desc.tab.bottom.2"].active
 {
-    border-image: url(../assets/images/gui/inventory/tab_bottom_selected_2.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+    border-image: url(../assets/images/gui/inventory/bottom_selected_2.png) 8 fill / 10px stretch;
 }
-.tab-bottom-3.active
+[data-tooltip="desc.tab.bottom.3"].active
 {
-    border-image: url(../assets/images/gui/inventory/tab_bottom_selected_3.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+    border-image: url(../assets/images/gui/inventory/bottom_selected_3.png) 8 fill / 10px stretch;
 }
-.tab-bottom-4.active
+[data-tooltip="desc.tab.bottom.4"].active
 {
-    border-image: url(../assets/images/gui/inventory/tab_bottom_selected_4.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+    border-image: url(../assets/images/gui/inventory/bottom_selected_4.png) 8 fill / 10px stretch;
 }
-.tab-bottom-5.active
+[data-tooltip="desc.tab.bottom.5"].active
 {
-    border-image: url(../assets/images/gui/inventory/tab_bottom_selected_5.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+    border-image: url(../assets/images/gui/inventory/bottom_selected_5.png) 8 fill / 10px stretch;
 }
-.tab-bottom-6.active
+[data-tooltip="desc.tab.bottom.6"].active
 {
-    border-image: url(../assets/images/gui/inventory/tab_bottom_selected_6.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+    border-image: url(../assets/images/gui/inventory/bottom_selected_6.png) 8 fill / 10px stretch;
 }
-.tab-bottom-7.active
+[data-tooltip="desc.tab.bottom.7"].active
 {
-    border-image: url(../assets/images/gui/inventory/tab_bottom_selected_7.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+    border-image: url(../assets/images/gui/inventory/bottom_selected_7.png) 8 fill / 10px stretch;
 }

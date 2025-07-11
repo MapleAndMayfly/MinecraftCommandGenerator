@@ -9,86 +9,96 @@
   <template id="MCG-item-selector">
     <div class="tab-list">
       <ul>
-        <li>
-          <button class="tab-button tab-top-1" data-id="0" data-icon="block/bricks.png">
+        <li class="active">
+          <button class="tab-button active" data-tooltip="desc.tab.top.1" data-icon="block/bricks.png">
             <img src="">
           </button>
         </li>
         <li>
-          <button class="tab-button tab-top-2" data-id="1" data-icon="block/cyan_wool.png">
+          <button class="tab-button" data-tooltip="desc.tab.top.2" data-icon="block/cyan_wool.png">
             <img src="">
           </button>
         </li>
         <li>
-          <button class="tab-button tab-top-3" data-id="2" data-icon="block/grass_block.png">
+          <button class="tab-button" data-tooltip="desc.tab.top.3" data-icon="block/grass_block.png">
             <img src="">
           </button>
         </li>
         <li>
-          <button class="tab-button tab-top-4" data-id="3" data-icon="item/oak_sign.png">
+          <button class="tab-button" data-tooltip="desc.tab.top.4" data-icon="item/oak_sign.png">
             <img src="">
           </button>
         </li>
         <li>
-          <button class="tab-button tab-top-5" data-id="4" data-icon="item/redstone.png">
+          <button class="tab-button" data-tooltip="desc.tab.top.5" data-icon="item/redstone.png">
             <img src="">
           </button>
         </li>
       </ul>
       <ul>
         <li>
-          <button class="tab-button tab-top-6" data-id="5" data-icon="block/bookshelf.png">
+          <button class="tab-button" data-tooltip="desc.tab.top.6" data-icon="block/bookshelf.png">
             <img src="">
           </button>
         </li>
         <li>
-          <button class="tab-button tab-top-7" data-id="6" data-icon="item/compass.png">
+          <button class="tab-button" data-tooltip="desc.tab.top.7" data-icon="item/compass.png">
             <img src="">
           </button>
         </li>
       </ul>
     </div>
-    <div class="tab-items">
+    <div class="tab-body">
       <div>
-        
+        <div class="tab-header">
+          <div class="tab-title" data-i18n="desc.tab.top.1"></div>
+          <input class="tab-search hide" id="tab-search" type="text" placeholder="" data-i18n="placeholder.tab.search">
+        </div>
+        <div class="tab-content">
+          <div class="tab-button-set">
+            <div class="tab-items"><!-- Button injected by js --></div>
+            <div class="tab-hotbar"><!-- Button injected by js --></div>
+          </div>
+          <div class="tab-scroll-bar"></div>
+        </div>
       </div>
     </div>
     <div class="tab-list">
       <ul>
         <li>
-          <button class="tab-button tab-bottom-1" data-id="7" data-icon="item/diamond_pickaxe.png">
+          <button class="tab-button" data-tooltip="desc.tab.bottom.1" data-icon="item/diamond_pickaxe.png">
             <img src="">
           </button>
         </li>
         <li>
-          <button class="tab-button tab-bottom-2" data-id="8" data-icon="item/netherite_sword.png">
+          <button class="tab-button" data-tooltip="desc.tab.bottom.2" data-icon="item/netherite_sword.png">
             <img src="">
           </button>
         </li>
         <li>
-          <button class="tab-button tab-bottom-3" data-id="9" data-icon="item/golden_apple.png">
+          <button class="tab-button" data-tooltip="desc.tab.bottom.3" data-icon="item/golden_apple.png">
             <img src="">
           </button>
         </li>
         <li>
-          <button class="tab-button tab-bottom-4" data-id="10" data-icon="item/iron_ingot.png">
+          <button class="tab-button" data-tooltip="desc.tab.bottom.4" data-icon="item/iron_ingot.png">
             <img src="">
           </button>
         </li>
         <li>
-          <button class="tab-button tab-bottom-5" data-id="11" data-icon="item/pig_spawn_egg.png">
+          <button class="tab-button" data-tooltip="desc.tab.bottom.5" data-icon="item/pig_spawn_egg.png">
             <img src="">
           </button>
         </li>
       </ul>
       <ul>
         <li>
-          <button class="tab-button tab-bottom-6" data-id="12" data-icon="block/command_block.png">
+          <button class="tab-button" data-tooltip="desc.tab.bottom.6" data-icon="block/impulse_command_block.gif">
             <img src="">
           </button>
         </li>
         <li>
-          <button class="tab-button tab-bottom-7" data-id="13" data-icon="block/chest.png">
+          <button class="tab-button" data-tooltip="desc.tab.bottom.7" data-icon="block/chest.png">
             <img src="">
           </button>
         </li>

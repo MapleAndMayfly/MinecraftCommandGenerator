@@ -1,13 +1,33 @@
-import { init, base, setTooltipAuto } from "./global.js";
+import { init, mergeI18n, updateTooltip, changeIcon } from "./global.js";
 let selectedLang = localStorage.getItem('lang') || 'zh';
 
-init(initButtons, true);
+const i18n =
+{
+  zh:
+  {
+    'page.give': 'give指令 - MC指令生成器',
+    'give.mainItem': '给予的物品'
+  },
+  en:
+  {
+    'page.give': 'give - MC Command Generator',
+    'give.mainItem': 'Item Given'
+  }
+}
+
+init(onInit, true);
+
+function onInit()
+{
+    mergeI18n(i18n);
+    initButtons();
+}
 
 function initButtons()
 {
-    document.querySelectorAll('.slot-button').forEach(function(button)
+    document.querySelectorAll('.slot-button.with-selector').forEach(function(button)
     {
-        changeIcon(button);
+        changeIcon(button, 'item/empty_slot_sword.png');
 
         // Listener for slot button
         button.addEventListener('click', function()
@@ -16,39 +36,8 @@ function initButtons()
             itemSelector.classList.toggle('hide');
             if (this.dataset.icon === 'item/empty_slot_sword.png')
             {
-                this.dataset.tooltip = itemSelector.classList.contains('hide') ? 'tip.openSelector' : 'tip.closeSelector';
-                setTooltipAuto(this);
+                updateTooltip(this, itemSelector.classList.contains('hide') ? 'tip.openItemSelector' : 'tip.closeItemSelector');
             }
         });
     });
-}
-
-function changeIcon(button, src = 'item/empty_slot_sword.png')
-{
-    let icon = button.querySelector('img');
-    if (icon)
-    {
-        button.dataset.icon = src;
-        if (src.startsWith('item'))
-        {
-            icon.classList.add('pixel');
-        }
-        else if (src.startsWith('block'))
-        {
-            icon.classList.remove('pixel');
-        }
-        else
-        {
-            icon.classList.add('pixel');
-            icon.src = base + 'assets/images/item/empty_slot_sword.png';
-            console.error('Bad image URL: ' + src);
-            return;
-        }
-
-        icon.src = base + 'assets/images/' + src;
-    }
-    else
-    {
-        console.error('Icon for item button [' + button.dataset.id + '] not found!');
-    }
 }

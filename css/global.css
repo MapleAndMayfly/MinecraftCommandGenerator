@@ -105,10 +105,53 @@ body.dark-mode
 {
     position: fixed;
     pointer-events: none;
-    border-image: url(../assets/images/gui/widget/tooltip.png) 4 4 4 4 fill / 5px 5px 5px 5px stretch;
-    color: #eee;
-    padding: 8px;
+    border-image: url(../assets/images/gui/widget/tooltip.png) 4 fill / 6px stretch;
     z-index: 100;
+}
+#tooltip.zh
+{
+    padding: 9px 10px 8px 10px;
+}
+#tooltip.en
+{
+    padding: 6px 10px 4px 10px;
+}
+
+span.tip-text.bold
+{
+    font-weight: bold;
+}
+span.tip-text.italic
+{
+    font-style: italic;
+}
+
+span.tip-text.zh
+{
+    font-size: 22px
+}
+span.tip-text.zh.normal
+{
+    color: #eee;
+    text-shadow: 1.5px 1.5px 0 #333;
+}
+span.tip-text.zh.gray
+{
+    color: gray;
+}
+
+span.tip-text.en
+{
+    font-size: 26px
+}
+span.tip-text.en.normal
+{
+    color: #eee;
+    text-shadow: 2.5px 2.5px 0 #444;
+}
+span.tip-text.en.gray
+{
+    color: gray;
 }
 
 /* ======================================= Header ======================================= */
@@ -207,12 +250,12 @@ body.dark-mode
 #content h1
 {
     display: inline-block;
-    border-image: url(../assets/images/gui/h_background.png) 8 8 8 8 fill / 10px 10px 10px 10px stretch;
+    border-image: url(../assets/images/gui/h_background.png) 8 fill / 10px stretch;
     min-height: 48px;
     min-width: 72px;
     padding: 16px;
-    color: #333;
-    text-shadow: 1px 1px 0 #eee;
+    color: #222;
+    text-shadow: 1px 1px 0px #eee;
 }
 
 /* ======================================= Buttons ======================================= */
@@ -269,11 +312,15 @@ button
 /* --------------------------------------- Slot button --------------------------------------- */
 .slot
 {
-    border-image: url(../assets/images/gui/inventory/slot.png) 2 2 2 2 fill / 2px 2px 2px 2px stretch;
+    border-image: url(../assets/images/gui/inventory/slot.png) 2 fill / 3px stretch;
     width: 45px;
     height: 45px;
+}
+.slot.with-margin
+{
     margin: 8px;
 }
+
 
 .slot-button
 {

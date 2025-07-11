@@ -1,73 +1,56 @@
-let currLang = localStorage.getItem('lang') || 'zh';
+let lang = localStorage.getItem('lang') || 'zh';
 let tooltipContainer;
 let isDev = !window.location.origin.includes('https://mapleandmayfly.github.io');
 export const base = isDev ? '/' : 'https://mapleandmayfly.github.io/MinecraftCommandGenerator/';
 
 const i18n =
 {
-    zh:
-    {
-        // page titles
-        'page.main': '主页 - MC指令生成器',
-        'page.give': 'give指令 - MC指令生成器',
-        // header.html
-        'languageTitle': '语言:',
-        'editionTitle': '发行版:',
-        'versionTitle': '版本号:',
-        'currLang': '简体中文',
-        'java': 'Java',
-        'bedrock': '基岩',
-        // index.html
-        'index.top': '置顶',
-        // give.html
-        'give.mainItem': '给予的物品'
-    },
-    en:
-    {
-        // page titles
-        'page.main': 'Main Page - MC Command Generator',
-        'page.give': 'give - MC Command Generator',
-        // header.html
-        'languageTitle': 'Language:',
-        'editionTitle': 'Edition:',
-        'versionTitle': 'Version:',
-        'currLang': 'English',
-        'java': 'Java',
-        'bedrock': 'Bedrock',
-        // index.html
-        'index.top': 'Top',
-        // give.html
-        'give.mainItem': 'Item Given'
-    }
+  zh:
+  {
+    'title.language': '语言:',
+    'title.edition': '发行版:',
+    'title.version': '版本号:',
+    'option.lang': '简体中文',
+    'option.java': 'Java',
+    'option.bedrock': '基岩'
+  },
+  en:
+  {
+    'title.language': 'Language:',
+    'title.edition': 'Edition:',
+    'title.version': 'Version:',
+    'option.lang': 'English',
+    'option.java': 'Java',
+    'option.bedrock': 'Bedrock'
+  }
 }
 
 const tooltip =
 {
-    zh:
-    {
-        'desc.give': '将物品给予实体',
-        'desc.locate': '定位群系或结构',
-        'tip.openSelector': '点击打开物品选择器',
-        'tip.closeSelector': '点击关闭物品选择器'
-    },
-    en:
-    {
-        'desc.give': 'Give item to entity',
-        'desc.locate': 'Locate boime or structure',
-        'tip.openSelector': 'Click to open item selector',
-        'tip.closeSelector': 'Click to close item selector'
-    }
+  zh:
+  {
+    'tip.beforeAll': '<span class="tip-text zh normal" style="margin-top: 16px">',
+    'tip.afterAll': '</span>',
+    'tip.openItemSelector': '点击打开物品选择器',
+    'tip.closeItemSelector': '点击关闭物品选择器'
+  },
+  en:
+  {
+    'tip.beforeAll': '<span class="tip-text en normal">',
+    'tip.afterAll': '</span>',
+    'tip.openItemSelector': 'Click to open item selector',
+    'tip.closeItemSelector': 'Click to close item selector'
+  }
 }
 
 /**
  * Initializing function for all pages
- * @param {Function} additionalFunction Another function for initializing
+ * @param {Function} additionalFunction Additional functions for initializing
  * @param {boolean} needItemSelector Whether or not current page uses MCG Item Selector
  */
 export function init(additionalFunction = null, needItemSelector = false)
 {
     let pagesUrl = base + 'pages/';
-    // Ensure the whole page translated
     Promise.all(
     [
         loadHeader(pagesUrl),
@@ -75,6 +58,7 @@ export function init(additionalFunction = null, needItemSelector = false)
     ]).then(() => onInit(additionalFunction));
 }
 
+/* ===================================== Initializing part ===================================== */
 async function loadHeader(pagesUrl)
 {
     try
@@ -129,20 +113,29 @@ function onInit(additionalFunction)
     // Run additional initializing functions
     if (typeof additionalFunction === 'function') additionalFunction();
     else if (!additionalFunction)
-        console.error('Type of additionalFunction expected to be Function, but ' + typeof(additionalFunction) + ' found.');
+        console.error(`Type of additionalFunction expected to be Function, but ${typeof(additionalFunction)} found.`);
 
-    initTooltip();
-    initLanguage();
-}
-
-function initLanguage()
-{
-    currLang = localStorage.getItem('lang') || 'zh';
-    document.querySelectorAll('[data-i18n]').forEach(function(element)
+    // Init tooltip
+    tooltipContainer = document.getElementById('tooltip');
+    document.querySelectorAll('[data-tooltip]').forEach(function(element)
     {
-        const key = element.getAttribute('data-i18n');
-        element.textContent = i18n[currLang][key] || 'Error: Key [' + key + '] not found in i18n!';
+        element.addEventListener('mouseenter', function()
+        {
+            let key = element.dataset.tooltip;
+            let text = tooltip[lang][key] || `<span style="color: red">Error: Key [${key}] not found in tooltip!</span>`;
+            let html = tooltip[lang]['tip.beforeAll'] + text + tooltip[lang]['tip.afterAll'];
+            tooltipContainer.innerHTML = html;
+            tooltipContainer.classList.remove('hide');
+        });
+        element.addEventListener('mousemove', function(event)
+        {
+            tooltipContainer.style.left = (event.clientX + 16) + 'px';
+            tooltipContainer.style.top = (event.clientY - 48) + 'px';
+        });
+        element.addEventListener('mouseleave', () => tooltipContainer.classList.add('hide'));
     });
+
+    initLanguage(lang);
 }
 
 function initDropdownMenus()
@@ -167,11 +160,9 @@ function initDropdownMenus()
         item.addEventListener('click', function(e)
         {
             e.preventDefault();
-            currLang = this.getAttribute('data-value');
-            localStorage.setItem('lang', currLang);
-            initLanguage();
+            initLanguage(this.dataset.value);
 
-            console.log('Language switched to: ' + currLang);
+            console.log('Language switched to: ' + lang);
         });
     });
 
@@ -181,11 +172,11 @@ function initDropdownMenus()
         item.addEventListener('click', function(e)
         {
             e.preventDefault();
-            let currEdition = this.getAttribute('data-i18n');
-            let elementToChange = document.getElementById('current-edition');
+            let currEdition = this.dataset.i18n;
+            let currEdtnLabel = document.getElementById('current-edition');
 
-            elementToChange.setAttribute('data-i18n', currEdition);
-            elementToChange.textContent = i18n[currLang][currEdition];
+            currEdtnLabel.dataset.i18n = currEdition;
+            currEdtnLabel.textContent = i18n[lang][currEdition];
             localStorage.setItem('edition', currEdition);
 
             console.log('Edition switched to: ' + currEdition);
@@ -248,35 +239,170 @@ function initThemeSwitcher()
     }
 }
 
-function initTooltip()
+function initLanguage(currLang)
 {
-    tooltipContainer = document.getElementById('tooltip');
+    lang = currLang;
+    let prevLang = localStorage.getItem('lang') || 'zh';
+    localStorage.setItem('lang', lang);
 
-    // Listener for elements with tooltip
-    document.querySelectorAll('[data-tooltip]').forEach(function(element)
+    tooltipContainer.classList.remove(prevLang);
+    tooltipContainer.classList.add(lang);
+
+    document.querySelectorAll('[data-i18n]').forEach(element => updateText(element));
+}
+
+/* ===================================== Interface part ===================================== */
+/**
+ * Merge additional i18n entries into global i18n
+ * @param {Object} additionalI18n Object with the same structure as global i18n
+ */
+export function mergeI18n(additionalI18n)
+{
+    if (!additionalI18n || !typeof additionalI18n === 'object')
     {
-        element.addEventListener('mouseenter', () => setTooltipAuto(element));
-        element.addEventListener('mousemove', e => moveTooltip(e));
-        element.addEventListener('mouseleave', () => hideTooltip());
-    });
+        console.error('Invalid type for i18n: ' + additionalI18n);
+        return;
+    }
+    for (const langKey in additionalI18n)
+    {
+        if (!additionalI18n.hasOwnProperty(langKey))
+        {
+            console.error('Invalid structure for i18n: ' + additionalI18n);
+            return;
+        }
+        const entries = additionalI18n[langKey];
+        for (const key in entries)
+        {
+            if (!entries.hasOwnProperty(key))
+            {
+                console.error('Invalid structure for i18n: ' + additionalI18n);
+                return;
+            }
+            if (!i18n[langKey])
+            {
+                console.error('Not supported language code for i18n: ' + langKey);
+                return;
+            }
+            if (i18n[langKey][key])
+            {
+                console.error('Repeated key for i18n: ' + key);
+                return;
+            }
+            i18n[langKey][key] = entries[key];
+        }
+    }
+}
+/**
+ * Merge additional tooltip entries into global tooltip
+ * @param {Object} additionalTooltip Object with the same structure as global tooltip
+ */
+export function mergeTooltip(additionalTooltip)
+{
+    if (!additionalTooltip || typeof additionalTooltip !== 'object')
+    {
+        console.error('Invalid type for tooltip: ' + additionalTooltip);
+        return;
+    }
+    for (const langKey in additionalTooltip)
+    {
+        if (!additionalTooltip.hasOwnProperty(langKey))
+        {
+            console.error('Invalid structure for tooltip: ' + additionalTooltip);
+            return;
+        }
+        const entries = additionalTooltip[langKey];
+        for (const key in entries)
+        {
+            if (!entries.hasOwnProperty(key))
+            {
+                console.error('Invalid structure for tooltip: ' + additionalTooltip);
+                return;
+            }
+            if (!tooltip[langKey])
+            {
+                console.error('Not supported language code for tooltip: ' + langKey);
+                return;
+            }
+            if (tooltip[langKey][key])
+            {
+                console.error('Repeated key for tooltip: ' + key);
+                return;
+            }
+            tooltip[langKey][key] = entries[key];
+        }
+    }
 }
 
-export function setTooltip(html = 'Error: No text set for tooltip!')
+/**
+ * Change text content based on i18n
+ * @param {Element} element The element to change text
+ * @param {string} key The i18n key for the text, keep origin if not defined
+ */
+export function updateText(element, key = null)
 {
+    if (key) element.dataset.i18n = key;
+    else key = element.dataset.i18n;
+
+    if (element.tagName === 'INPUT' && element.type === 'text')
+    {
+        element.placeholder = i18n[lang][key] || '_';
+    }
+    else
+    {
+        element.innerHTML = i18n[lang][key] || `<span style="color: red">Error: Key [${key}] not found in i18n!</span>`;;
+    }
+}
+/**
+ * Change tooltip instantly rather than mouse leave & enter
+ * @param {Element} element The element tooltip based on
+ * @param {string} key The tooltip key for update, keep origin if not defined
+ */
+export function updateTooltip(element, key = null)
+{
+    if (key) element.dataset.tooltip = key;
+    else key = element.dataset.tooltip;
+    let text = tooltip[lang][key] || `<span style="color: red">Error: Key [${key}] not found in tooltip!</span>`;
+    let html = tooltip[lang]['tip.beforeAll'] + text + tooltip[lang]['tip.afterAll'];
     tooltipContainer.innerHTML = html;
-    tooltipContainer.classList.remove('hide');
 }
-export function setTooltipAuto(element)
+
+/**
+ * Change button icons for selectors or similar
+ * @param {Element} button The button that changes icon
+ * @param {string} src Path to the icon image
+ * @returns 
+ */
+export function changeIcon(button, src)
 {
-    let key = element.dataset.tooltip;
-    setTooltip(tooltip[currLang][key] || 'Error: Key [' + key + '] not found in tooltip!');
-}
-export function hideTooltip()
-{
-    tooltipContainer.classList.add('hide');
-}
-export function moveTooltip(event)
-{
-    tooltipContainer.style.left = (event.clientX + 4) + 'px';
-    tooltipContainer.style.top = (event.clientY - 48) + 'px';
+    let icon = button.querySelector('img');
+    if (icon)
+    {
+        if (src.length === 0)
+        {
+            icon.src = '';
+            return;
+        }
+        button.dataset.icon = src;
+        if (src.startsWith('item'))
+        {
+            icon.classList.add('pixel');
+        }
+        else if (src.startsWith('block'))
+        {
+            icon.classList.remove('pixel');
+        }
+        else
+        {
+            icon.classList.add('pixel');
+            icon.src = base + 'assets/images/item/barrier.png';
+            console.error('Bad image URL: ' + src);
+            return;
+        }
+
+        icon.src = base + 'assets/images/' + src;
+    }
+    else
+    {
+        console.error(`'Icon for item button [${button.dataset.id}] not found!'`);
+    }
 }
