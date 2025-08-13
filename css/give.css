@@ -1,7 +1,6 @@
-.left-part
+#left-part
 {
     margin: 32px 24px;
-    width: 100%;
 }
 
 h1 + *

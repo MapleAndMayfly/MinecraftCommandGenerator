@@ -1,60 +1,39 @@
 let lang = localStorage.getItem('lang') || 'zh';
 let tooltipContainer;
+let supportedLang = ['zh', 'en'];
+
 let isDev = !window.location.origin.includes('https://mapleandmayfly.github.io');
 export const base = isDev ? '/' : 'https://mapleandmayfly.github.io/MinecraftCommandGenerator/';
 
-const i18n =
+const text = {};
+const tooltip = {};
+const tooltipAttr =
 {
-  zh:
-  {
-    'title.language': '语言:',
-    'title.edition': '发行版:',
-    'title.version': '版本号:',
-    'option.lang': '简体中文',
-    'option.java': 'Java',
-    'option.bedrock': '基岩'
-  },
-  en:
-  {
-    'title.language': 'Language:',
-    'title.edition': 'Edition:',
-    'title.version': 'Version:',
-    'option.lang': 'English',
-    'option.java': 'Java',
-    'option.bedrock': 'Bedrock'
-  }
-}
-
-const tooltip =
-{
-  zh:
-  {
-    'tip.beforeAll': '<span class="tip-text zh normal" style="margin-top: 16px">',
-    'tip.afterAll': '</span>',
-    'tip.openItemSelector': '点击打开物品选择器',
-    'tip.closeItemSelector': '点击关闭物品选择器'
-  },
-  en:
-  {
-    'tip.beforeAll': '<span class="tip-text en normal">',
-    'tip.afterAll': '</span>',
-    'tip.openItemSelector': 'Click to open item selector',
-    'tip.closeItemSelector': 'Click to close item selector'
-  }
+    zh: 'class="tip-text zh normal" style="margin-top: 16px"',
+    en: 'class="tip-text en normal"'
 }
 
 /**
  * Initializing function for all pages
  * @param {Function} additionalFunction Additional functions for initializing
- * @param {boolean} needItemSelector Whether or not current page uses MCG Item Selector
  */
-export function init(additionalFunction = null, needItemSelector = false)
+export function init(additionalFunction = null)
 {
+    console.log('Dev mode: ' + isDev);
+
     let pagesUrl = base + 'pages/';
+    supportedLang.forEach(function(langCode)
+    {
+        text[langCode] = {};
+        tooltip[langCode] = {};
+    });
+
     Promise.all(
     [
         loadHeader(pagesUrl),
-        loadItemSelector(pagesUrl, base, needItemSelector)
+        loadItemSelector(pagesUrl, base),
+        loadI18n('global', 'text'),
+        loadI18n('global', 'tooltip')
     ]).then(() => onInit(additionalFunction));
 }
 
@@ -70,6 +49,8 @@ async function loadHeader(pagesUrl)
         const headerBar = doc.querySelector('#MCG-header').content.cloneNode(true);
         document.getElementById('header').appendChild(headerBar);
 
+        document.getElementById('title-image').src = base + 'assets/images/title.png';
+        document.getElementById('title-link').href = base;
         initDropdownMenus();
         initThemeSwitcher();
     }
@@ -79,39 +60,45 @@ async function loadHeader(pagesUrl)
     }
 }
 
-async function loadItemSelector(pagesUrl, base, needItemSelector)
+async function loadItemSelector(pagesUrl, base)
 {
-    if (!needItemSelector) return;
+
+    const targets = document.querySelectorAll('.item-selector');
+    if (targets.length <= 0) return;
     try
     {
-        const response = await fetch(pagesUrl + 'common/inventory.html');
+        const response = await fetch(pagesUrl + 'common/itemSelector.html');
         const html = await response.text();
-        const script = document.createElement('script');
-        script.src = base + 'js/inventory.js';
-        script.type = 'module';
-        document.body.appendChild(script);
 
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
-        const itemSelector = doc.querySelector('#MCG-item-selector').content.cloneNode(true);
-        document.querySelectorAll('.item-selector')
-            .forEach(selector => selector.appendChild(itemSelector));
+        const model = doc.querySelector('#MCG-item-selector').content;
+        targets.forEach(function(selector)
+        {
+            const itemSelector = model.cloneNode(true);
+            selector.appendChild(itemSelector);
+        });
 
         const link = document.createElement('link');
         link.rel = 'stylesheet';
-        link.href = base + 'css/inventory.css';
+        link.href = base + 'css/itemSelector.css';
         document.head.appendChild(link);
+
+        const script = document.createElement('script');
+        script.src = base + 'js/itemSelector.js';
+        script.type = 'module';
+        document.body.appendChild(script);
     }
     catch (error)
     {
-        console.error('Inventory Selector loading failed!\n' + error);
+        console.error('Item Selector loading failed!\n' + error);
     }
 }
 
-function onInit(additionalFunction)
+async function onInit(additionalFunction)
 {
     // Run additional initializing functions
-    if (typeof additionalFunction === 'function') additionalFunction();
+    if (typeof additionalFunction === 'function') await additionalFunction();
     else if (!additionalFunction)
         console.error(`Type of additionalFunction expected to be Function, but ${typeof(additionalFunction)} found.`);
 
@@ -122,8 +109,10 @@ function onInit(additionalFunction)
         element.addEventListener('mouseenter', function()
         {
             let key = element.dataset.tooltip;
+            if (key === '') return;             // Skip empty tooltip
+
             let text = tooltip[lang][key] || `<span style="color: red">Error: Key [${key}] not found in tooltip!</span>`;
-            let html = tooltip[lang]['tip.beforeAll'] + text + tooltip[lang]['tip.afterAll'];
+            let html = `<span ${tooltipAttr[lang]}>${text}</span>`;
             tooltipContainer.innerHTML = html;
             tooltipContainer.classList.remove('hide');
         });
@@ -176,7 +165,7 @@ function initDropdownMenus()
             let currEdtnLabel = document.getElementById('current-edition');
 
             currEdtnLabel.dataset.i18n = currEdition;
-            currEdtnLabel.textContent = i18n[lang][currEdition];
+            currEdtnLabel.textContent = text[lang][currEdition];
             localStorage.setItem('edition', currEdition);
 
             console.log('Edition switched to: ' + currEdition);
@@ -239,6 +228,15 @@ function initThemeSwitcher()
     }
 }
 
+/* Here lies a little bug that each time we change language
+ * will cause dynamic styles for different languages not to
+ * be added into pages(such as tab titles of item selectors).
+ * We may fix it by calling some additional functions when
+ * initLanguage() is called, but I think it makes little
+ * differences to this project so I let it go. If you notice
+ * this bug and think it essential to be fixed, you can try
+ * completing it yourself or simply tell me, thanks!
+ */
 function initLanguage(currLang)
 {
     lang = currLang;
@@ -251,92 +249,74 @@ function initLanguage(currLang)
     document.querySelectorAll('[data-i18n]').forEach(element => updateText(element));
 }
 
-/* ===================================== Interface part ===================================== */
 /**
- * Merge additional i18n entries into global i18n
- * @param {Object} additionalI18n Object with the same structure as global i18n
+ * Load i18n fron json files
+ * @param {string} filename filename without extensions
+ * @param {string} type type of i18n, 'text'|'tooltip'
+ * @param {string} currentLang The language to load
+ * @returns {Promise<Object>} I18n data
  */
-export function mergeI18n(additionalI18n)
+async function loadI18nFromFile(filename, type, currentLang)
 {
-    if (!additionalI18n || !typeof additionalI18n === 'object')
+    try
     {
-        console.error('Invalid type for i18n: ' + additionalI18n);
-        return;
+        const response = await fetch(`${base}json/i18n/${type}/${currentLang}/${filename}.json`);
+        if (!response.ok)
+        {
+            console.warn(`Failed to load ${type} file: ${filename}.json for language: ${currentLang}`);
+            return {};
+        }
+        const data = await response.json();
+        return data;
     }
-    for (const langKey in additionalI18n)
+    catch (error)
     {
-        if (!additionalI18n.hasOwnProperty(langKey))
-        {
-            console.error('Invalid structure for i18n: ' + additionalI18n);
-            return;
-        }
-        const entries = additionalI18n[langKey];
-        for (const key in entries)
-        {
-            if (!entries.hasOwnProperty(key))
-            {
-                console.error('Invalid structure for i18n: ' + additionalI18n);
-                return;
-            }
-            if (!i18n[langKey])
-            {
-                console.error('Not supported language code for i18n: ' + langKey);
-                return;
-            }
-            if (i18n[langKey][key])
-            {
-                console.error('Repeated key for i18n: ' + key);
-                return;
-            }
-            i18n[langKey][key] = entries[key];
-        }
+        console.error(`Error loading ${type} file: ${filename}.json for language: ${currentLang}`, error);
+        return {};
     }
 }
+
+/* ===================================== Interfaces ===================================== */
+
 /**
- * Merge additional tooltip entries into global tooltip
- * @param {Object} additionalTooltip Object with the same structure as global tooltip
+ * Load & merge i18n data
+ * @param {string} filename filename without extensions
+ * @param {string} type type of i18n, 'text'|'tooltip'
  */
-export function mergeTooltip(additionalTooltip)
+export async function loadI18n(filename, type = 'text')
 {
-    if (!additionalTooltip || typeof additionalTooltip !== 'object')
+    if (type !== 'text' && type !== 'tooltip')
     {
-        console.error('Invalid type for tooltip: ' + additionalTooltip);
+        console.error('Invalid i18n type: ' + type);
         return;
     }
-    for (const langKey in additionalTooltip)
+
+    const targetObject = type === 'text' ? text : tooltip;
+
+    // Load for all supported languages
+    for (const langCode of supportedLang)
     {
-        if (!additionalTooltip.hasOwnProperty(langKey))
+        const data = await loadI18nFromFile(filename, type, langCode);
+        
+        // Merge i18n data
+        for (const key in data)
         {
-            console.error('Invalid structure for tooltip: ' + additionalTooltip);
-            return;
-        }
-        const entries = additionalTooltip[langKey];
-        for (const key in entries)
-        {
-            if (!entries.hasOwnProperty(key))
+            if (data.hasOwnProperty(key))
             {
-                console.error('Invalid structure for tooltip: ' + additionalTooltip);
-                return;
+                if (targetObject[langCode][key])
+                {
+                    console.warn(`Duplicate key found in ${type}: ${key}`);
+                }
+                targetObject[langCode][key] = data[key];
             }
-            if (!tooltip[langKey])
-            {
-                console.error('Not supported language code for tooltip: ' + langKey);
-                return;
-            }
-            if (tooltip[langKey][key])
-            {
-                console.error('Repeated key for tooltip: ' + key);
-                return;
-            }
-            tooltip[langKey][key] = entries[key];
         }
     }
 }
 
 /**
- * Change text content based on i18n
+ * Change text content based on text
  * @param {Element} element The element to change text
- * @param {string} key The i18n key for the text, keep origin if not defined
+ * @param {string} key The text key for the text, keep origin if not defined
  */
 export function updateText(element, key = null)
 {
@@ -345,24 +325,45 @@ export function updateText(element, key = null)
 
     if (element.tagName === 'INPUT' && element.type === 'text')
     {
-        element.placeholder = i18n[lang][key] || '_';
+        element.placeholder = text[lang][key] || '_';
     }
     else
     {
-        element.innerHTML = i18n[lang][key] || `<span style="color: red">Error: Key [${key}] not found in i18n!</span>`;;
+        element.innerHTML = text[lang][key] || `<span style="color: red">Error: Key [${key}] not found in text!</span>`;
     }
 }
+
+/**
+ * Update text with custom style for inventory tab titles
+ * @param {Element} element The element to change text
+ * @param {string} key The text key for the text
+ * @param {string} style The CSS style to apply
+ */
+export function updateTextWithStyle(element, key, style)
+{
+    const textContent = text[lang][key];
+    if (textContent)
+    {
+        element.dataset.i18n = key;
+        element.innerHTML = `<span style="${style}">${textContent}</span>`;
+    }
+    else
+    {
+        element.innerHTML = `<span style="color: red">Error: Key [${key}] not found in text!</span>`;
+    }
+}
+
 /**
  * Change tooltip instantly rather than mouse leave & enter
  * @param {Element} element The element tooltip based on
- * @param {string} key The tooltip key for update, keep origin if not defined
+ * @param {string} key The tooltip key for update, keep origin if left empty
  */
 export function updateTooltip(element, key = null)
 {
     if (key) element.dataset.tooltip = key;
     else key = element.dataset.tooltip;
     let text = tooltip[lang][key] || `<span style="color: red">Error: Key [${key}] not found in tooltip!</span>`;
-    let html = tooltip[lang]['tip.beforeAll'] + text + tooltip[lang]['tip.afterAll'];
+    let html = `<span ${tooltipAttr[lang]}>${text}</span>`;
     tooltipContainer.innerHTML = html;
 }
 
@@ -383,6 +384,7 @@ export function changeIcon(button, src)
             return;
         }
         button.dataset.icon = src;
+
         if (src.startsWith('item'))
         {
             icon.classList.add('pixel');
@@ -403,6 +405,6 @@ export function changeIcon(button, src)
     }
     else
     {
-        console.error(`'Icon for item button [${button.dataset.id}] not found!'`);
+        console.error(`Icon for item button [${button.dataset.id}] not found!`);
     }
 }

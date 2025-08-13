@@ -59,12 +59,14 @@
     justify-content: space-between;
 }
 
-.tab-hotbar
+.tab-items
 {
     display: flex;
+    flex-wrap: wrap;
+    width: 405px;
 }
 
-.tab-row
+.tab-hotbar
 {
     display: flex;
 }

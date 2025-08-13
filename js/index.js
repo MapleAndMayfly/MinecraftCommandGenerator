@@ -1,40 +1,11 @@
-import { init, mergeI18n, mergeTooltip, base } from "./global.js";
-let selectedLang = localStorage.getItem('lang') || 'zh';
-
-const i18n =
-{
-  zh:
-  {
-    'page.index': '主页 - MC指令生成器',
-    'index.top': '置顶'
-  },
-  en:
-  {
-    'page.index': 'Main Page - MC Command Generator',
-    'index.top': 'Top'
-  }
-}
-
-const tooltip =
-{
-  zh:
-  {
-    'desc.give': '将物品给予实体',
-    'desc.locate': '定位群系或结构'
-  },
-  en:
-  {
-    'desc.give': 'Give item to entity',
-    'desc.locate': 'Locate boime or structure'
-  }
-}
+import { init, loadI18n, base } from "./global.js";
 
 init(onInit);
 
-function onInit()
+async function onInit()
 {
-    mergeI18n(i18n);
-    mergeTooltip(tooltip);
+    await loadI18n('index', 'text');
+    await loadI18n('index', 'tooltip');
     initButtons();
 }
 

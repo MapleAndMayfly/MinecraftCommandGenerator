@@ -1,0 +1,19 @@
+{
+    "tip.openItemSelector": "点击打开物品选择器",
+    "tip.closeItemSelector": "点击关闭物品选择器",
+    "placeholder.tab.search": "输入文本以搜索...",
+    "desc.tab.top.1": "建筑方块",
+    "desc.tab.top.2": "染色方块",
+    "desc.tab.top.3": "自然方块",
+    "desc.tab.top.4": "功能方块",
+    "desc.tab.top.5": "红石方块",
+    "desc.tab.top.6": "已保存的快捷栏",
+    "desc.tab.top.7": "搜索物品",
+    "desc.tab.bottom.1": "工具与实用物品",
+    "desc.tab.bottom.2": "战斗用品",
+    "desc.tab.bottom.3": "食物与饮品",
+    "desc.tab.bottom.4": "原材料",
+    "desc.tab.bottom.5": "刷怪蛋",
+    "desc.tab.bottom.6": "管理员用品",
+    "desc.tab.bottom.7": "生存模式物品栏"
+} 

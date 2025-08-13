@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MCG Item Selector</title>
+</head>
+<body>
+  <template id="MCG-item-selector">
+    <div class="slot with-margin">
+      <button class="slot-button" data-tooltip="tip.openItemSelector" data-icon="item/empty_slot_sword.png">
+        <img src="">
+      </button>
+    </div>
+    <div class="inventory hide">
+      <div class="tab-list tab-top"><!-- List injected by js --></div>
+      <div class="tab-body">
+        <div>
+          <div class="tab-header">
+            <div class="tab-title" data-i18n="desc.tab.top.1"></div>
+            <input class="tab-search hide" type="text" data-i18n="placeholder.tab.search">
+          </div>
+          <div class="tab-content">
+            <div class="tab-button-set">
+              <div class="tab-items"><!-- Button injected by js --></div>
+              <div class="tab-hotbar"><!-- Button injected by js --></div>
+            </div>
+            <div class="tab-scroll-bar"></div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-list tab-bottom"><!-- List injected by js --></div>
+    </div>
+  </template>
+</body>
+</html>
