@@ -1,5 +1,9 @@
 import { loadI18n, updateText, updateTextWithStyle, updateTooltip, changeIcon, base } from "./global.js";
 
+const rows = 5;
+const cols = 9;
+let offset = 1;
+
 const titleStyle =
 {
     zh: 'color: #333; font-size: 22px; margin-top: 4px;',
@@ -37,6 +41,8 @@ export async function initItemSelector()
     loadTabBtn();
     loadButtonSet();
     document.querySelectorAll('.tab-search').forEach(element => updateText(element));
+    document.querySelectorAll('.tab-button[data-tooltip="desc.tab.top.1"]')
+            .forEach(element => element.dispatchEvent(new MouseEvent('mousedown', { bubbles: true })));
 }
 
 function loadToggleBtn()
@@ -57,7 +63,8 @@ function loadToggleBtn()
                 {
                     updateTooltip(this, inventory.classList.contains('hide') ? 'tip.openItemSelector' : 'tip.closeItemSelector');
                 }
-                
+
+                // updateTextWithStyle() does not work in initItemSelector(), so I put it here
                 if (!inventory.classList.contains('hide'))
                 {
                     const currentLang = localStorage.getItem('lang') || 'zh';
@@ -101,12 +108,12 @@ function loadTabBtn()
     // Listeners for tab list buttons
     document.querySelectorAll('.tab-button').forEach(function(button)
     {
-        button.addEventListener('mousedown', function()
+        button.addEventListener('mousedown', async function()
         {
             const currentSelector = this.closest('.item-selector');
             if (!currentSelector) return;
-            const btns = currentSelector.querySelectorAll('.tab-button');
-            btns.forEach(function(btn)
+
+            currentSelector.querySelectorAll('.tab-button').forEach(function(btn)
             {
                 btn.classList.remove('active');
                 btn.parentElement.classList.remove('active');
@@ -114,7 +121,7 @@ function loadTabBtn()
             this.classList.add('active');
             this.parentElement.classList.add('active');
 
-            // Change for tab Search Items
+            // Change visibility of search bar
             if (this.dataset.tooltip === 'desc.tab.top.7')
             {
                 currentSelector.querySelector('.tab-search').classList.remove('hide');
@@ -131,6 +138,10 @@ function loadTabBtn()
                 const currentLang = localStorage.getItem('lang') || 'zh';
                 updateTextWithStyle(currentTitle, this.dataset.tooltip, titleStyle[currentLang]);
             }
+
+            // Update slot buttons
+            offset = 1; // Set offset as 1 to skip hotbar
+            await updateSlotButtons(currentSelector, this.dataset.tooltip);
         });
 
         // Disable tab Survival Inventory & Saved Hotbars
@@ -171,8 +182,6 @@ function loadTabBtn()
 
 function loadButtonSet()
 {
-    const rows = 5;
-    const cols = 9;
     const tabHotbar = document.querySelectorAll('.tab-hotbar');
     const tabItems = document.querySelectorAll('.tab-items');
 
@@ -203,7 +212,7 @@ function loadButtonSet()
             container.appendChild(slotDiv);
 
             // Listener for item buttons
-            slotDiv.querySelector(".slot-button").addEventListener('click', function()
+            slotDiv.querySelector("button").addEventListener('click', function()
             {
                 if (this.dataset.icon === '') return;           // Skip empty icon
                 const selector = this.closest('.item-selector');
@@ -234,7 +243,55 @@ function createTabButton(icon, idx, isTop = true, isActive = false)
     btn.dataset.tooltip = `desc.tab.${isTop ? 'top' : 'bottom'}.${idx + 1}`;
     btn.dataset.icon = icon;
     btn.innerHTML = '<img src="">';
-    
+
     li.appendChild(btn);
     return li;
+}
+
+async function updateSlotButtons(itemSelector, tooltip)
+{
+    const items = await loadSlotItem(tooltip);
+    if (!Array.isArray(items)) return;
+
+    itemSelector.querySelectorAll('[data-idx]').forEach(function(btn)
+    {
+        const idx = Number(btn.dataset.idx);
+        const mappedIndex = idx - (offset * cols);
+        if (mappedIndex < 0) return;                // Hidden by offset, skip
+
+        const item = items[mappedIndex + 1] || {};  // +1 to skip void(default) item
+        changeIcon(btn, item.texture || items[0].texture || '');
+        btn.dataset.tooltip = item.i18n || items[0].i18n || 'item.void';
+    });
+}
+
+async function loadSlotItem(tooltip)
+{
+    const parts = tooltip.split('.');
+    const position = parts[2];
+    const index = parts[3];
+
+    if (parts.length !== 4 || parts[0] !== 'desc' || parts[1] !== 'tab' ||
+        (position !== 'top' && position !== 'bottom') ||
+        !/^\d+$/.test(index))
+    {
+        console.log(`Bad tooltip format [${tooltip}]!`);
+        return {};
+    }
+
+    try
+    {
+        const response = await fetch(`${base}json/inventory/${position}_${index}.json`);
+        if (!response.ok)
+        {
+            console.warn(`Failed to load items of [${tooltip}]`);
+            return {};
+        }
+        return await response.json();
+    }
+    catch (error)
+    {
+        console.error(`Error loading items of [${tooltip}]!`, error);
+        return {};
+    }
 }

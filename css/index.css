@@ -13,3 +13,9 @@ h1 + ul
 {
     margin-left: 24px;
 }
+
+.game-button > img
+{
+    width: 24;
+    image-rendering: pixelated;
+}

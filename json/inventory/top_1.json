@@ -1,0 +1,509 @@
+[
+    {
+        "i18n": "item.void",
+        "id": "minecraft:air",
+        "texture": "",
+        "component": 6,
+        "namespace": "Minecraft"
+    },
+    {
+        "i18n": "item.oakLog",
+        "name": "橡木原木",
+        "id": "minecraft:oak_log",
+        "texture": "block/oak_log.png"
+    },
+    {
+        "i18n": "item.oakWood",
+        "name": "橡木",
+        "id": "minecraft:oak_wood",
+        "texture": "block/oak_wood.png"
+    },
+    {
+        "i18n": "item.strippedOakLog",
+        "name": "去皮橡木原木",
+        "id": "minecraft:stripped_oak_log",
+        "texture": "block/stripped_oak_log.png"
+    },
+    {
+        "i18n": "item.strippedOakWood",
+        "name": "去皮橡木",
+        "id": "minecraft:stripped_oak_wood",
+        "texture": "block/stripped_oak_wood.png"
+    },
+    {
+        "name": "橡木木板"
+    },
+    {
+        "name": "橡木楼梯"
+    },
+    {
+        "name": "橡木台阶"
+    },
+    {
+        "name": "橡木栅栏"
+    },
+    {
+        "name": "橡木栅栏门"
+    },
+    {
+        "name": "橡木门"
+    },
+    {
+        "name": "橡木活板门"
+    },
+    {
+        "name": "橡木压力板"
+    },
+    {
+        "name": "橡木按钮"
+    },
+    {
+        "name": "云杉原木",
+        "id": "minecraft:spruce_log",
+        "texture": "block/spruce_log.png"
+    },
+    {
+        "name": "云杉木",
+        "id": "minecraft:spruce_wood",
+        "texture": "block/spruce_wood.png"
+    },
+    {
+        "name": "去皮云杉原木",
+        "id": "minecraft:stripped_spruce_log",
+        "texture": "block/stripped_spruce_log.png"
+    },
+    {
+        "name": "去皮云杉木",
+        "id": "minecraft:stripped_spruce_wood",
+        "texture": "block/stripped_spruce_wood.png"
+    },
+    {
+        "name": "云杉木板"
+    },
+    {
+        "name": "云杉木楼梯"
+    },
+    {
+        "name": "云杉木台阶"
+    },
+    {
+        "name": "云杉木栅栏"
+    },
+    {
+        "name": "云杉木栅栏门"
+    },
+    {
+        "name": "云杉木门"
+    },
+    {
+        "name": "云杉木活板门"
+    },
+    {
+        "name": "云杉木压力板"
+    },
+    {
+        "name": "云杉木按钮"
+    },
+    {
+        "name": "白桦原木",
+        "id": "minecraft:birch_log",
+        "texture": "block/birch_log.png"
+    },
+    {
+        "name": "白桦木",
+        "id": "minecraft:birch_wood",
+        "texture": "block/birch_wood.png"
+    },
+    {
+        "name": "去皮白桦原木",
+        "id": "minecraft:stripped_birch_log",
+        "texture": "block/stripped_birch_log.png"
+    },
+    {
+        "name": "去皮白桦木",
+        "id": "minecraft:stripped_birch_wood",
+        "texture": "block/stripped_birch_wood.png"
+    },
+    {
+        "name": "白桦木板"
+    },
+    {
+        "name": "白桦木楼梯"
+    },
+    {
+        "name": "白桦木台阶"
+    },
+    {
+        "name": "白桦木栅栏"
+    },
+    {
+        "name": "白桦木栅栏门"
+    },
+    {
+        "name": "白桦木门"
+    },
+    {
+        "name": "白桦木活板门"
+    },
+    {
+        "name": "白桦木压力板"
+    },
+    {
+        "name": "白桦木按钮"
+    },
+    {
+        "name": "丛林原木",
+        "id": "minecraft:jungle_log",
+        "texture": "block/jungle_log.png"
+    },
+    {
+        "name": "丛林木",
+        "id": "minecraft:jungle_wood",
+        "texture": "block/jungle_wood.png"
+    },
+    {
+        "name": "去皮丛林原木",
+        "id": "minecraft:stripped_jungle_log",
+        "texture": "block/stripped_jungle_log.png"
+    },
+    {
+        "name": "去皮丛林木",
+        "id": "minecraft:stripped_jungle_wood",
+        "texture": "block/stripped_jungle_wood.png"
+    },
+    {
+        "name": "丛林木板"
+    },
+    {
+        "name": "丛林木楼梯"
+    },
+    {
+        "name": "丛林木台阶"
+    },
+    {
+        "name": "丛林木栅栏"
+    },
+    {
+        "name": "丛林木栅栏门"
+    },
+    {
+        "name": "丛林木门"
+    },
+    {
+        "name": "丛林木活板门"
+    },
+    {
+        "name": "丛林木压力板"
+    },
+    {
+        "name": "丛林木按钮"
+    },
+    {
+        "name": "金合欢原木",
+        "id": "minecraft:acacia_log",
+        "texture": "block/acacia_log.png"
+    },
+    {
+        "name": "金合欢木",
+        "id": "minecraft:acacia_wood",
+        "texture": "block/acacia_wood.png"
+    },
+    {
+        "name": "去皮金合欢原木",
+        "id": "minecraft:stripped_acacia_log",
+        "texture": "block/stripped_acacia_log.png"
+    },
+    {
+        "name": "去皮金合欢木",
+        "id": "minecraft:stripped_acacia_wood",
+        "texture": "block/stripped_acacia_wood.png"
+    },
+    {
+        "name": "金合欢木板"
+    },
+    {
+        "name": "金合欢木楼梯"
+    },
+    {
+        "name": "金合欢木台阶"
+    },
+    {
+        "name": "金合欢木栅栏"
+    },
+    {
+        "name": "金合欢木栅栏门"
+    },
+    {
+        "name": "金合欢木门"
+    },
+    {
+        "name": "金合欢木活板门"
+    },
+    {
+        "name": "金合欢木压力板"
+    },
+    {
+        "name": "金合欢木按钮"
+    },
+    {
+        "name": "深色橡木原木",
+        "id": "minecraft:dark_oak_log",
+        "texture": "block/dark_oak_log.png"
+    },
+    {
+        "name": "深色橡木",
+        "id": "minecraft:dark_oak_wood",
+        "texture": "block/dark_oak_wood.png"
+    },
+    {
+        "name": "去皮深色橡木原木",
+        "id": "minecraft:stripped_dark_oak_log",
+        "texture": "block/stripped_dark_oak_log.png"
+    },
+    {
+        "name": "去皮深色橡木",
+        "id": "minecraft:stripped_dark_oak_wood",
+        "texture": "block/stripped_dark_oak_wood.png"
+    },
+    {
+        "name": "深色橡木木板"
+    },
+    {
+        "name": "深色橡木楼梯"
+    },
+    {
+        "name": "深色橡木台阶"
+    },
+    {
+        "name": "深色橡木栅栏"
+    },
+    {
+        "name": "深色橡木栅栏门"
+    },
+    {
+        "name": "深色橡木门"
+    },
+    {
+        "name": "深色橡木活板门"
+    },
+    {
+        "name": "深色橡木压力板"
+    },
+    {
+        "name": "深色橡木按钮"
+    },
+    {
+        "name": "红树原木",
+        "id": "minecraft:mangrove_log",
+        "texture": "block/mangrove_log.png"
+    },
+    {
+        "name": "红树木",
+        "id": "minecraft:mangrove_wood",
+        "texture": "block/mangrove_wood.png"
+    },
+    {
+        "name": "去皮红树原木",
+        "id": "minecraft:stripped_mangrove_log",
+        "texture": "block/stripped_mangrove_log.png"
+    },
+    {
+        "name": "去皮红树木",
+        "id": "minecraft:stripped_mangrove_wood",
+        "texture": "block/stripped_mangrove_wood.png"
+    },
+    {
+        "name": "红树木板"
+    },
+    {
+        "name": "红树木楼梯"
+    },
+    {
+        "name": "红树木台阶"
+    },
+    {
+        "name": "红树木栅栏"
+    },
+    {
+        "name": "红树木栅栏门"
+    },
+    {
+        "name": "红树木门"
+    },
+    {
+        "name": "红树木活板门"
+    },
+    {
+        "name": "红树木压力板"
+    },
+    {
+        "name": "红树木按钮"
+    },
+    {
+        "name": "樱花原木",
+        "id": "minecraft:cherry_log",
+        "texture": "block/cherry_log.png"
+    },
+    {
+        "name": "樱花木",
+        "id": "minecraft:cherry_wood",
+        "texture": "block/cherry_wood.png"
+    },
+    {
+        "name": "去皮樱花原木",
+        "id": "minecraft:stripped_cherry_log",
+        "texture": "block/stripped_cherry_log.png"
+    },
+    {
+        "name": "去皮樱花木",
+        "id": "minecraft:stripped_cherry_wood",
+        "texture": "block/stripped_cherry_wood.png"
+    },
+    {
+        "name": "樱花木板"
+    },
+    {
+        "name": "樱花木楼梯"
+    },
+    {
+        "name": "樱花木台阶"
+    },
+    {
+        "name": "樱花木栅栏"
+    },
+    {
+        "name": "樱花木栅栏门"
+    },
+    {
+        "name": "樱花木门"
+    },
+    {
+        "name": "樱花木活板门"
+    },
+    {
+        "name": "樱花木压力板"
+    },
+    {
+        "name": "樱花木按钮"
+    },
+    {
+        "name": "竹块"
+    },
+    {
+        "name": "去皮竹块"
+    },
+    {
+        "name": "竹板"
+    },
+    {
+        "name": "竹马赛克"
+    },
+    {
+        "name": "竹楼梯"
+    },
+    {
+        "name": "竹马赛克楼梯"
+    },
+    {
+        "name": "竹台阶"
+    },
+    {
+        "name": "竹马赛克台阶"
+    },
+    {
+        "name": "竹栅栏"
+    },
+    {
+        "name": "竹栅栏门"
+    },
+    {
+        "name": "竹门"
+    },
+    {
+        "name": "竹活板门"
+    },
+    {
+        "name": "竹压力板"
+    },
+    {
+        "name": "竹按钮"
+    },
+    {
+        "name": "绯红菌柄"
+    },
+    {
+        "name": "绯红菌核"
+    },
+    {
+        "name": "去皮绯红菌柄"
+    },
+    {
+        "name": "去皮绯红菌核"
+    },
+    {
+        "name": "绯红木板"
+    },
+    {
+        "name": "绯红木楼梯"
+    },
+    {
+        "name": "绯红木台阶"
+    },
+    {
+        "name": "绯红木栅栏"
+    },
+    {
+        "name": "绯红木栅栏门"
+    },
+    {
+        "name": "绯红木门"
+    },
+    {
+        "name": "绯红木活板门"
+    },
+    {
+        "name": "绯红木压力板"
+    },
+    {
+        "name": "绯红木按钮"
+    },
+    {
+        "name": "诡异菌柄"
+    },
+    {
+        "name": "诡异菌核"
+    },
+    {
+        "name": "去皮诡异菌柄"
+    },
+    {
+        "name": "去皮诡异菌核"
+    },
+    {
+        "name": "诡异木板"
+    },
+    {
+        "name": "诡异木楼梯"
+    },
+    {
+        "name": "诡异木台阶"
+    },
+    {
+        "name": "诡异木栅栏"
+    },
+    {
+        "name": "诡异木栅栏门"
+    },
+    {
+        "name": "诡异木门"
+    },
+    {
+        "name": "诡异木活板门"
+    },
+    {
+        "name": "诡异木压力板"
+    },
+    {
+        "name": "诡异木按钮"
+    }
+]

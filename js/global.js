@@ -249,33 +249,6 @@ function initLanguage(currLang)
     document.querySelectorAll('[data-i18n]').forEach(element => updateText(element));
 }
 
-/**
- * Load i18n fron json files
- * @param {string} filename filename without extensions
- * @param {string} type type of i18n, 'text'|'tooltip'
- * @param {string} currentLang The language to load
- * @returns {Promise<Object>} I18n data
- */
-async function loadI18nFromFile(filename, type, currentLang)
-{
-    try
-    {
-        const response = await fetch(`${base}json/i18n/${type}/${currentLang}/${filename}.json`);
-        if (!response.ok)
-        {
-            console.warn(`Failed to load ${type} file: ${filename}.json for language: ${currentLang}`);
-            return {};
-        }
-        const data = await response.json();
-        return data;
-    }
-    catch (error)
-    {
-        console.error(`Error loading ${type} file: ${filename}.json for language: ${currentLang}`, error);
-        return {};
-    }
-}
-
 /* ===================================== Interfaces ===================================== */
 
 /**
@@ -287,7 +260,7 @@ export async function loadI18n(filename, type = 'text')
 {
     if (type !== 'text' && type !== 'tooltip')
     {
-        console.error('Invalid i18n type: ' + type);
+        console.error('Invalid i18n type: ' + type,);
         return;
     }
 
@@ -297,7 +270,7 @@ export async function loadI18n(filename, type = 'text')
     for (const langCode of supportedLang)
     {
         const data = await loadI18nFromFile(filename, type, langCode);
-        
+
         // Merge i18n data
         for (const key in data)
         {
@@ -406,5 +379,33 @@ export function changeIcon(button, src)
     else
     {
         console.error(`Icon for item button [${button.dataset.id}] not found!`);
+    }
+}
+
+/* ===================================== Misc ===================================== */
+
+/**
+ * Load i18n fron json files
+ * @param {string} filename filename without extensions
+ * @param {string} type type of i18n, 'text'|'tooltip'
+ * @param {string} currentLang The language to load
+ * @returns {Promise<Object>} I18n data
+ */
+async function loadI18nFromFile(filename, type, currentLang)
+{
+    try
+    {
+        const response = await fetch(`${base}json/i18n/${type}/${currentLang}/${filename}.json`);
+        if (!response.ok)
+        {
+            console.warn(`Failed to load ${type} file [${filename}.json] for language [${currentLang}]`);
+            return {};
+        }
+        return await response.json();
+    }
+    catch (error)
+    {
+        console.error(`Error loading ${type} file [${filename}.json] for language [${currentLang}]!`, error);
+        return {};
     }
 }

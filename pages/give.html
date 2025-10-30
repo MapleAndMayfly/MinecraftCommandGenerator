@@ -9,6 +9,46 @@
   <link rel="stylesheet" href="../css/give.css">
   <script src="../js/give.js" type="module"></script>
 </head>
+<!--
+FORMAT:
+  Java Edition:
+    give <targets> <item> [<count>]
+      -targets: Use entitySelector (TODO)
+      -item: Use itemSelector
+      -count: Integer, the amount of the item(s) given.
+        -default: 1
+        -range: [1, 6400]
+  Bedrock Edition:
+    give <player: target> <itemName: Item> [amount: int] [data: int] [components: json]
+      -player: Use entitySelector (TODO, All non-player entity disabled)
+      -itemName: Use itemSelector
+      -amount: Integer, the amount of the item(s) given.
+        -default: 1
+        -range: [1, 32767]
+      -data: Integer, the inner data value of the item(s) given.
+        -default: 0
+        -range: [0, 32767]
+      -components: Json object, used as item component, see https://minecraft.wiki/w/Item_components
+格式:
+  Java版:
+    give <目标> <物品> [<数量>]
+      -目标: 使用entitySelector (TODO)
+      -物品: 使用itemSelector
+      -数量: 整型，表示给予的物品数量
+        -默认值: 1
+        -范围: [1, 6400]
+  基岩版:
+    give <玩家> <物品名> [数量] [数据值] [组件]
+      -玩家: 使用entitySelector (TODO，禁用所有非玩家实体)
+      -物品名: 使用itemSelector
+      -数量: 整型，表示给予的物品数量
+        -默认值: 1
+        -范围: [1, 32767]
+      -数据值: 整型，表示给与物品内部的数据值
+        -默认值: 0
+        -范围: [0, 32767]
+      -组件: Json对象，作为物品堆叠组件，见 https://zh.minecraft.wiki/w/%E5%9F%BA%E5%B2%A9%E7%89%88%E7%89%A9%E5%93%81%E5%A0%86%E5%8F%A0%E7%BB%84%E4%BB%B6
+-->
 <body>
   <div id="app">
     <div id="tooltip" class="hide"></div>
